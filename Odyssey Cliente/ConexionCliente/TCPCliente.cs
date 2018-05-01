@@ -4,26 +4,19 @@ using System.Linq;
 using System.Net.Sockets;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Xml;
 
-namespace Odyssey_Cliente
+namespace Odyssey_Cliente.ConexionCliente
 {
-    static class Program
+    class TCPCliente
     {
-        /// <summary>
-        /// Punto de entrada principal para la aplicación.
-        /// </summary>
-        [STAThread]
-        static void Main()
+      /*  private static void Main(string[] args)
         {
             // connect to server
             TcpClient client = new TcpClient("localhost", 5000);
 
-            // Console.Write("Enter name : ");
-
-            //String name = Console.ReadLine();
-            String name = "Larry";
+            Console.Write("Enter name : ");
+            String name = Console.ReadLine();
 
             // send name to server
             byte[] buf;
@@ -51,11 +44,6 @@ namespace Odyssey_Cliente
                 Console.WriteLine("Mobile : {0}", doc.SelectSingleNode("//mobile").InnerText);
                 Console.WriteLine("Email  : {0}", doc.SelectSingleNode("//email").InnerText);
             }
-        
-    
-    Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
-        }
+        }*/
     }
 }
