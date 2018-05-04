@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Odyssey_Cliente.Properties
+namespace Prueba.Properties
 {
 
 
