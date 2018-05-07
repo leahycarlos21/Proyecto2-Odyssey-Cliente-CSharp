@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace Prueba.ConexionCliente
 {
-    public class AddSongMensaje : Mensajes
+    public class AddDatoMensaje : Mensajes
     {
         public Canciones cancion { get; set; }
        // public Usuario usuario { get; set; }
 
-        public AddSongMensaje()
+        public AddDatoMensaje()
         {
 
         }

@@ -1,4 +1,5 @@
-﻿using Prueba.TCPCliente;
+﻿using Prueba.ConexionCliente;
+using Prueba.TCPCliente;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -32,18 +33,20 @@ namespace Prueba
                 rutasMP3 = CajaBsuquedaArchivos.FileNames;
                 foreach (var rutaMp3 in rutasMP3)
                 {
-                    byte[] byteCancion = System.IO.File.ReadAllBytes(rutaMp3.ToString());
-                    // Console.WriteLine(byteCancion[0].ToString());
-                    int num = 0;
-                  /*  while (byteCancion[num]!=null)
-                    {
-
-                        Console.WriteLine(byteCancion[num].ToString());
-                        num++;
-                    }   */
-
+                    //Lee los bytes de la cancion
+                    byte[] bytesCancionSelect = System.IO.File.ReadAllBytes(rutaMp3.ToString());
+                 
                 }
-                new SocketCliente();
+                byte[] byteCancion = System.Text.Encoding.UTF8.GetBytes("holiwi");
+                // Canciones cancion = new Canciones("Mana","albumcito","la Song","Metalero","HOLHAOHLAHOAHLAHOAHL", byteCancion[0]);
+                Canciones cancion = new Canciones();
+                cancion.nombreCancion = "Cancion de la hoguera";
+                cancion.artista = "Bob Esponja";
+                AddDatoMensaje mensajeCancion=new AddDatoMensaje();
+                mensajeCancion.cancion = cancion;
+                mensajeCancion.OpCod = "01";
+
+                new SocketCliente(mensajeCancion);
            
            }
 
