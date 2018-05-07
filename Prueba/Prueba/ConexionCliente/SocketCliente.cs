@@ -19,62 +19,66 @@ namespace Prueba.TCPCliente
     class SocketCliente
     {
 
-        public SocketCliente()
+        public SocketCliente(AddDatoMensaje mensajeEntrante)
         {
 
             //http://www.srikanthtechnologies.com/blog/java/java_cs_xml.aspx
-           byte[] byteCancion = System.Text.Encoding.UTF8.GetBytes("holiwi");
-            // Canciones cancion = new Canciones("Mana","albumcito","la Song","Metalero","HOLHAOHLAHOAHLAHOAHL", byteCancion[0]);
-            Canciones cancion = new Canciones();
-            cancion.nombreCancion = "Cancion de la hoguera";
-            cancion.artista = "Bob Esponja";
+            /**
+             * El codigo de operacion se asigan al momento de crear el AddDatoMensaje en el metodo seleccionado, aqui solamente invoca la funcion usarSocket
+             */
+                //Enviar el mensaje tipo AddDatoMensaje y listo.
+                usarSocket(mensajeEntrante);
 
-            AddSongMensaje mensaje = new AddSongMensaje();
-            mensaje.OpCod = "01";
-            mensaje.cancion = cancion;
-            mensaje.cancion.PRUEBAA = "212";
-
-            //de object a xml
-
-
-               string ObjectXML = ObjectToXml(mensaje);
-
-            //de xml a object
-            //   Canciones XMLObject = XMLtoObject<Canciones>(ObjectXML);
-            ObjectXML=ObjectXML.Replace("\n", "").Replace("\r", "");
-              Console.WriteLine(ObjectXML.ToString());
-           // Console.WriteLine(XMLObject.nombreCancion);
-           
-
-            //IMPORTANTE
             
-            TcpClient tcpClient = new TcpClient("localhost", 5000);
-             NetworkStream networkStream = tcpClient.GetStream();
-             byte[] datoByte;
-
-             Console.WriteLine();
-            string datoEnviar = ObjectXML;
-              datoByte = Encoding.UTF8.GetBytes(datoEnviar+"\n");
-            //Envia al servidor
-             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
-           
-            
-            //Importante*
-            
-            
-             //Leer del servidor
-             datoByte = new byte[312];
-             networkStream.Read(datoByte, 0, 312);
-             //El dato que se va a obtener
-             String datorecibido = Encoding.UTF8.GetString(datoByte);
-             //Quita los bytes sobrantes
-             datorecibido = datorecibido.Substring(0, datorecibido.IndexOf(char.ConvertFromUtf32(0)));
-             Console.WriteLine(datorecibido);
-
-
+        
              
 
 
+        }
+
+        private void usarSocket(AddDatoMensaje mensaje)
+        {
+            string ObjectXML = ObjectToXml(mensaje);
+
+            //de xml a object
+            //   Canciones XMLObject = XMLtoObject<Canciones>(ObjectXML);
+            ObjectXML = ObjectXML.Replace("\n", "").Replace("\r", "");
+            Console.WriteLine(ObjectXML.ToString());
+            // Console.WriteLine(XMLObject.nombreCancion);
+
+
+            //IMPORTANTE
+
+            TcpClient tcpClient = new TcpClient("localhost", 5000);
+            NetworkStream networkStream = tcpClient.GetStream();
+            byte[] datoByte;
+
+            Console.WriteLine();
+            string datoEnviar = ObjectXML;
+            datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
+            //Envia al servidor
+            networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
+
+
+   
+            /**AQUI SE DEBE IMPLEMENTAR LO QUE SE VE HACER CON LO QUE HIZO EL SERVER*/
+            //Leer del servidor
+            datoByte = new byte[312];
+            networkStream.Read(datoByte, 0, 312);
+            //El dato que se va a obtener
+            String datorecibido = Encoding.UTF8.GetString(datoByte);
+            //Quita los bytes sobrantes
+            datorecibido = datorecibido.Substring(0, datorecibido.IndexOf(char.ConvertFromUtf32(0)));
+            Console.WriteLine(datorecibido);
+
+        }
+        private AddDatoMensaje mensajeCancion(String codigoOp,Canciones cancion)
+        {
+            AddDatoMensaje mensaje = new AddDatoMensaje();
+            mensaje.OpCod = codigoOp;
+            mensaje.cancion = cancion;
+          //  mensaje.cancion.PRUEBAA = "212";
+            return mensaje;
         }
 
 
