@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Prueba.TCPCliente;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -23,11 +24,28 @@ namespace Prueba
         {
             OpenFileDialog CajaBsuquedaArchivos = new OpenFileDialog();
             CajaBsuquedaArchivos.Multiselect = true;
-            /*if (CajaBsuquedaArchivos.ShowDialog()==System.Windows.Forms.DialogResult.OK)
+            if (CajaBsuquedaArchivos.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
+                String[] ArchivosMP3;
+                String[] rutasMP3;
+                ArchivosMP3 = CajaBsuquedaArchivos.SafeFileNames;
+                rutasMP3 = CajaBsuquedaArchivos.FileNames;
+                foreach (var rutaMp3 in rutasMP3)
+                {
+                    byte[] byteCancion = System.IO.File.ReadAllBytes(rutaMp3.ToString());
+                    // Console.WriteLine(byteCancion[0].ToString());
+                    int num = 0;
+                  /*  while (byteCancion[num]!=null)
+                    {
 
+                        Console.WriteLine(byteCancion[num].ToString());
+                        num++;
+                    }   */
 
-            }*/
+                }
+                new SocketCliente();
+           
+           }
 
 
 
