@@ -13,15 +13,15 @@ namespace Prueba.TCPCliente
         public String nombreCancion { get; set; }
         public String genero { get; set; }
         public String letra { get; set; }
-        public String PRUEBAA { get; set; }
+        //public String PRUEBAA { get; set; }
 
-        public byte bytesSong { get; set; }
+        public byte[] bytesSong { get; set; }
 
         public Canciones()
         {
 
         }
-        public Canciones(String artista,String album, String nombreCancion, String genero, String letra, byte byteSong)
+        public Canciones(String artista,String album, String nombreCancion, String genero, String letra, byte[] byteSong)
         {
             this.artista = artista;
             this.album = album;
