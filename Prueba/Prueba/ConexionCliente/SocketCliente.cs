@@ -14,6 +14,7 @@ using Prueba.ConexionCliente;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Prueba.TCPCliente
 {
@@ -29,7 +30,14 @@ namespace Prueba.TCPCliente
              */
             //Enviar el mensaje tipo AddDatoMensaje y listo.
             //new ThreadExceptionDialog (new )
-            usarSocket(mensajeEntrante);
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                /* run your code here */
+                usarSocket(mensajeEntrante);
+
+            }).Start();
+
 
             
         
