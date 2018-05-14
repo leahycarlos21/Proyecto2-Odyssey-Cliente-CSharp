@@ -59,7 +59,9 @@ namespace Prueba
                         Canciones cancionEntrante = new Canciones();
                         TagLib.File tagFile = TagLib.File.Create(rutasMP3[cantidadMp3].ToString());
                         //  Console.WriteLine("------------"+ tagFile.Tag.FirstArtist.ToString());
-                        cancionEntrante.artista = tagFile.Tag.FirstArtist.ToString();
+#pragma warning disable CS0618 // Type or member is obsolete
+                        cancionEntrante.artista = tagFile.Tag.FirstArtist;
+#pragma warning restore CS0618 // Type or member is obsolete
                         cancionEntrante.album = tagFile.Tag.Album;
                         cancionEntrante.nombreCancion = tagFile.Tag.Title;
                         cancionEntrante.genero = tagFile.Tag.FirstGenre;
@@ -109,8 +111,8 @@ namespace Prueba
                     AddDatoMensaje mensajeCancion = new AddDatoMensaje();
                     mensajeCancion.cancion = CancionesTotal;
                     mensajeCancion.OpCod = "01";
-
-                     new SocketCliente(mensajeCancion);
+                    Console.WriteLine("Va a entrar");
+                    new SocketCliente(mensajeCancion);
 
                 }
 

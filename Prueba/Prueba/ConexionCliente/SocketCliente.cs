@@ -40,6 +40,8 @@ namespace Prueba.TCPCliente
 
         private void usarSocket(AddDatoMensaje mensaje)
         {
+            Console.WriteLine("entro a usarSockets");
+
             string ObjectXML = ObjectToXml(mensaje);
 
             //de xml a object
@@ -51,15 +53,16 @@ namespace Prueba.TCPCliente
 
             //IMPORTANTE
 
-            TcpClient tcpClient = new TcpClient("localhost", 5000);
+            TcpClient tcpClient = new TcpClient("localhost", 5001);
             NetworkStream networkStream = tcpClient.GetStream();
             byte[] datoByte;
 
-            Console.WriteLine();
             string datoEnviar = ObjectXML;
             datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
             //Envia al servidor
             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
+            Console.WriteLine("Se envio la vara");
+
             networkStream.Close();
 
             tcpClient.Close();
