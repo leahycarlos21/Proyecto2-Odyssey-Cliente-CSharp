@@ -9,7 +9,7 @@ namespace Prueba.ConexionCliente
 {
     public class AddDatoMensaje : Mensajes
     {
-        public Canciones cancion { get; set; }
+        public Canciones[] cancion  { get; set; }
        // public Usuario usuario { get; set; }
 
         public AddDatoMensaje()

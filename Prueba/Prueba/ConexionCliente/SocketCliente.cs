@@ -7,13 +7,14 @@ using System.Threading.Tasks;
 using System.Dynamic;
 using System.Xml.Linq;
 using System.IO;
-using System.IO;
-using System;
+
 using System.Net;
 using System.Net.Sockets;
-using System.Text;
 using Prueba.ConexionCliente;
 using System.Xml.Serialization;
+using System.Xml;
+using System.Windows.Forms;
+
 namespace Prueba.TCPCliente
 {
     class SocketCliente
@@ -26,8 +27,9 @@ namespace Prueba.TCPCliente
             /**
              * El codigo de operacion se asigan al momento de crear el AddDatoMensaje en el metodo seleccionado, aqui solamente invoca la funcion usarSocket
              */
-                //Enviar el mensaje tipo AddDatoMensaje y listo.
-                usarSocket(mensajeEntrante);
+            //Enviar el mensaje tipo AddDatoMensaje y listo.
+            //new ThreadExceptionDialog (new )
+            usarSocket(mensajeEntrante);
 
             
         
@@ -58,21 +60,24 @@ namespace Prueba.TCPCliente
             datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
             //Envia al servidor
             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
+            networkStream.Close();
 
+            tcpClient.Close();
 
-   
-            /**AQUI SE DEBE IMPLEMENTAR LO QUE SE VE HACER CON LO QUE HIZO EL SERVER*/
+   /*
+            /**AQUI SE DEBE IMPLEMENTAR LO QUE SE VE HACER CON LO QUE HIZO EL SERVER
             //Leer del servidor
-            datoByte = new byte[312];
-            networkStream.Read(datoByte, 0, 312);
+            datoByte = new byte[512];
+            networkStream.Read(datoByte, 0, 512);
             //El dato que se va a obtener
             String datorecibido = Encoding.UTF8.GetString(datoByte);
             //Quita los bytes sobrantes
             datorecibido = datorecibido.Substring(0, datorecibido.IndexOf(char.ConvertFromUtf32(0)));
             Console.WriteLine(datorecibido);
-
+            MessageBox.Show(datorecibido);
+            */
         }
-        private AddDatoMensaje mensajeCancion(String codigoOp,Canciones cancion)
+        private AddDatoMensaje mensajeCancion(String codigoOp, Canciones[] cancion)
         {
             AddDatoMensaje mensaje = new AddDatoMensaje();
             mensaje.OpCod = codigoOp;
@@ -84,18 +89,43 @@ namespace Prueba.TCPCliente
 
         private String ObjectToXml<T>(T objetoCambio)
         {
-            try
+            if (objetoCambio == null)
             {
-                var stringwriter = new System.IO.StringWriter();
-                var serializer = new XmlSerializer(typeof(T));
-                serializer.Serialize(stringwriter, objetoCambio);
-                return stringwriter.ToString();
+                return null;
             }
-            catch
+
+            XmlSerializer serializer = new XmlSerializer(typeof(T));
+
+            XmlWriterSettings settings = new XmlWriterSettings()
             {
-                throw;
+                Encoding = new UnicodeEncoding(false, false), // no BOM in a .NET string
+                Indent = false,
+                OmitXmlDeclaration = false
+            };
+
+            using (StringWriter textWriter = new StringWriter())
+            {
+                using (XmlWriter xmlWriter = XmlWriter.Create(textWriter, settings))
+                {
+                    serializer.Serialize(xmlWriter, objetoCambio);
+                }
+                return textWriter.ToString();
             }
         }
+
+
+        /* try
+        {
+            var stringwriter = new System.IO.StringWriter();
+            var serializer = new XmlSerializer(typeof(T));
+            serializer.Serialize(stringwriter, objetoCambio);
+            return stringwriter.ToString();
+        }
+        catch
+        {
+            throw;
+        }*/
+  //  }
 
         private T XMLtoObject<T>(string xmlCambio)
         {
