@@ -14,6 +14,7 @@ using Prueba.ConexionCliente;
 using System.Xml.Serialization;
 using System.Xml;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace Prueba.TCPCliente
 {
@@ -29,7 +30,14 @@ namespace Prueba.TCPCliente
              */
             //Enviar el mensaje tipo AddDatoMensaje y listo.
             //new ThreadExceptionDialog (new )
-            usarSocket(mensajeEntrante);
+            new Thread(() =>
+            {
+                Thread.CurrentThread.IsBackground = true;
+                /* run your code here */
+                usarSocket(mensajeEntrante);
+
+            }).Start();
+
 
             
         
@@ -40,6 +48,8 @@ namespace Prueba.TCPCliente
 
         private void usarSocket(AddDatoMensaje mensaje)
         {
+            Console.WriteLine("entro a usarSockets");
+
             string ObjectXML = ObjectToXml(mensaje);
 
             //de xml a object
@@ -51,15 +61,16 @@ namespace Prueba.TCPCliente
 
             //IMPORTANTE
 
-            TcpClient tcpClient = new TcpClient("localhost", 5000);
+            TcpClient tcpClient = new TcpClient("localhost", 5001);
             NetworkStream networkStream = tcpClient.GetStream();
             byte[] datoByte;
 
-            Console.WriteLine();
             string datoEnviar = ObjectXML;
             datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
             //Envia al servidor
             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
+            Console.WriteLine("Se envio la vara");
+
             networkStream.Close();
 
             tcpClient.Close();
@@ -114,18 +125,6 @@ namespace Prueba.TCPCliente
         }
 
 
-        /* try
-        {
-            var stringwriter = new System.IO.StringWriter();
-            var serializer = new XmlSerializer(typeof(T));
-            serializer.Serialize(stringwriter, objetoCambio);
-            return stringwriter.ToString();
-        }
-        catch
-        {
-            throw;
-        }*/
-  //  }
 
         private T XMLtoObject<T>(string xmlCambio)
         {
