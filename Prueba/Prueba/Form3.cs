@@ -22,7 +22,7 @@ namespace Prueba
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
             Usuario user = new Usuario();
-            u
+            
         }
 
         private void button1_Click(object sender, EventArgs e)
