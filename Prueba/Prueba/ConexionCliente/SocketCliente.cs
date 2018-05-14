@@ -122,18 +122,6 @@ namespace Prueba.TCPCliente
         }
 
 
-        /* try
-        {
-            var stringwriter = new System.IO.StringWriter();
-            var serializer = new XmlSerializer(typeof(T));
-            serializer.Serialize(stringwriter, objetoCambio);
-            return stringwriter.ToString();
-        }
-        catch
-        {
-            throw;
-        }*/
-  //  }
 
         private T XMLtoObject<T>(string xmlCambio)
         {
