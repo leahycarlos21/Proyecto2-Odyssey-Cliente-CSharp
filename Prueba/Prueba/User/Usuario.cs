@@ -8,11 +8,11 @@ namespace Prueba.User
 {
     class Usuario
     {
-        private String id { get; set; }
-        private String password { get; set; }
-        private String nombre { get; set; }
-        private String apellido { get; set; }
-        private String edad { get; set; }
+        public String id { get; set; }
+        public String password { get; set; }
+        public String nombre { get; set; }
+        public String apellido { get; set; }
+        public String edad { get; set; }
 
         public Usuario()
         {

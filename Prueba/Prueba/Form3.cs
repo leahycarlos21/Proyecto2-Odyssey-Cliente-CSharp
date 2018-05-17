@@ -13,6 +13,12 @@ namespace Prueba
 {
     public partial class Form3 : Form
     {
+        public String id { get; set; }
+        public String password { get; set; }
+        public String nombre { get; set; }
+        public String apellido { get; set; }
+        public String edad { get; set; }
+
         public Form3()
         {
             InitializeComponent();
@@ -21,17 +27,61 @@ namespace Prueba
 
         private void textBox4_TextChanged(object sender, EventArgs e)
         {
-            Usuario user = new Usuario();
-            
+            nombre = textBox4.Text;
         }
-
         private void button1_Click(object sender, EventArgs e)
         {
+            Usuario user = new Usuario();
+            Console.WriteLine("se creo el usuario");
+            user.nombre = nombre;
+            user.apellido = apellido;
+            user.edad = edad;
+            user.id = id;
+            user.password = password;
+            Console.WriteLine(user.nombre);
+            Console.WriteLine(user.apellido);
+            Console.WriteLine(user.edad);
+            Console.WriteLine(user.id);
+            Console.WriteLine(user.password);
+
+
+
 
         }
 
         private void label6_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            apellido = textBox3.Text;
+
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            edad = textBox2.Text;
+
+
+        }
+
+        private void Form3_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            id = textBox1.Text;
+
+        }
+
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            password = textBox5.Text;
 
         }
     }
