@@ -14,8 +14,13 @@ namespace Prueba.User
         public String apellido { get; set; }
         public String edad { get; set; }
 
-        public Usuario()
+        public Usuario(String id, String password, String nombre, String apellido, String edad)
         {
+            this.id = id;
+            this.password = password;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
 
         }
 

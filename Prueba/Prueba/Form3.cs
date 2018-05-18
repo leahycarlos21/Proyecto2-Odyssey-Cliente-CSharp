@@ -31,22 +31,17 @@ namespace Prueba
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            Usuario user = new Usuario();
+            //Se crea el usuraio y se le asignan cada valor escrito en los TextBox del Form
+            Usuario user = new Usuario(id, password, nombre, apellido, edad);
             Console.WriteLine("se creo el usuario");
-            user.nombre = nombre;
-            user.apellido = apellido;
-            user.edad = edad;
-            user.id = id;
-            user.password = password;
+            this.Hide();
+            Form1 Main = new Form1();
+            Main.Show();
             Console.WriteLine(user.nombre);
             Console.WriteLine(user.apellido);
             Console.WriteLine(user.edad);
             Console.WriteLine(user.id);
             Console.WriteLine(user.password);
-
-
-
-
         }
 
         private void label6_Click(object sender, EventArgs e)
