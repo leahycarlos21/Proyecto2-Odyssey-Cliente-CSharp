@@ -9,6 +9,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Security.Cryptography;
+using Prueba.ConexionCliente;
+using Prueba.TCPCliente;
 
 namespace Prueba
 {
@@ -43,6 +45,13 @@ namespace Prueba
             Console.WriteLine(user.edad);
             Console.WriteLine(user.id);
             Console.WriteLine(user.password);
+            AddDatoMensaje mensajeUsuario = new AddDatoMensaje();
+            mensajeUsuario.usuario = user;
+            mensajeUsuario.OpCod = "02";
+            Console.WriteLine("Va a entrar usuario");
+            new SocketCliente(mensajeUsuario);
+
+            
         }
 
         private void label6_Click(object sender, EventArgs e)
@@ -80,7 +89,7 @@ namespace Prueba
             password = EncryptPasswords(textBox5.Text);
 
         }
-
+        // Metodo encargado de encryptar la contrasena utilizando Hash Md5
         public String EncryptPasswords(String text)
         {
             MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();

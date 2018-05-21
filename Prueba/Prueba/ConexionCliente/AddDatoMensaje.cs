@@ -1,4 +1,5 @@
 ﻿using Prueba.TCPCliente;
+using Prueba.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,8 +11,7 @@ namespace Prueba.ConexionCliente
     public class AddDatoMensaje : Mensajes
     {
         public Canciones[] cancion  { get; set; }
-       // public Usuario usuario { get; set; }
-
+        public Usuario usuario;
         public AddDatoMensaje()
         {
 

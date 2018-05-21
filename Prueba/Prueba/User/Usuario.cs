@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Prueba.User
 {
-    class Usuario
+    public class Usuario
     {
         public String id { get; set; }
         public String password { get; set; }
@@ -21,6 +21,11 @@ namespace Prueba.User
             this.nombre = nombre;
             this.apellido = apellido;
             this.edad = edad;
+
+        }
+
+        public Usuario()
+        {
 
         }
 
