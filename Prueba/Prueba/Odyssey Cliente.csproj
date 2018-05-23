@@ -95,6 +95,11 @@
     <Compile Include="ConexionCliente\Canciones.cs" />
     <Compile Include="ConexionCliente\Mensajes.cs" />
     <Compile Include="ConexionCliente\SocketCliente.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
     <Compile Include="User\Usuario.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
@@ -110,11 +115,6 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Resources.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-    </Compile>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -158,9 +158,8 @@
     <Folder Include="ConexionCliente\NewFolder1\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\ipassword.png" />
-    <Content Include="Resources\password.png" />
-    <None Include="Resources\password1.png" />
+    <Content Include="Resources\llave.png" />
+    <None Include="Resources\llave1.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -35,6 +36,7 @@ namespace Prueba
             user.password = password;
             Console.WriteLine("se creo el usuario");
             Console.WriteLine(user.id);
+            Console.WriteLine(user.password);
             AddDatoMensaje mensajeUsuario = new AddDatoMensaje();
             mensajeUsuario.usuario = user;
             mensajeUsuario.OpCod = "06";
@@ -71,8 +73,29 @@ namespace Prueba
 
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
-            password = textBox2.Text;
+            password = EncryptPasswords(textBox2.Text);
+
+        }
+        // Metodo encargado de encryptar la contrasena utilizando Hash Md5
+        public String EncryptPasswords(String text)
+        {
+            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            md5.ComputeHash(ASCIIEncoding.ASCII.GetBytes(text));
+            byte[] result = md5.Hash;
+            StringBuilder str = new StringBuilder();
+            for (int i = 1; i < result.Length; i++)
+            {
+                str.Append(result[i].ToString("x2"));
+
+
+            }
+            return str.ToString();
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
 
         }
     }
+
 }
