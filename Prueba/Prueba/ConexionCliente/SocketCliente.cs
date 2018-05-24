@@ -78,19 +78,18 @@ namespace Prueba.TCPCliente
 
             //IMPORTANTE
 
-            TcpClient tcpClient = new TcpClient("localhost", 5001);
+
+            TcpClient tcpClient = new TcpClient("localhost", 5000);
             NetworkStream networkStream = tcpClient.GetStream();
-            
+
             byte[] datoByte;
 
+            Console.WriteLine();
             string datoEnviar = ObjectXML;
             datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
             //Envia al servidor
             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
-
-            Console.WriteLine("Se envio la vara");
-
-            networkStream.Close();
+            //  networkStream.Close();
 
 
 
@@ -98,13 +97,13 @@ namespace Prueba.TCPCliente
             //Leer del servidor
 
             StreamReader data_in = new StreamReader(tcpClient.GetStream());
-            
-           //El resultado recibido se asigna al datorecibido
+
+            //El resultado recibido se asigna al datorecibido
             String datorecibido = data_in.ReadToEnd();
             tcpClient.Close();
             networkStream.Close();
             data_in.Close();
-           
+
             if (mensaje.OpCod.Equals("01"))
             {
                 MessageBox.Show(datorecibido);
@@ -118,10 +117,11 @@ namespace Prueba.TCPCliente
                     ListaRecibida = datoServer;
                     cantidadTotal = datoServer.Length;
                 }
-              
+
             }
             //Para solicitar los bytes y reproducir
-            else if (mensaje.OpCod.Equals("04")){
+            else if (mensaje.OpCod.Equals("04"))
+            {
                 Console.WriteLine("CancionRecibida");
                 Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
                 ListaRecibida = datoServer;
@@ -139,7 +139,7 @@ namespace Prueba.TCPCliente
             AddDatoMensaje mensaje = new AddDatoMensaje();
             mensaje.OpCod = codigoOp;
             mensaje.cancion = cancion;
-          //  mensaje.cancion.PRUEBAA = "212";
+            //  mensaje.cancion.PRUEBAA = "212";
             return mensaje;
         }
 
@@ -155,7 +155,7 @@ namespace Prueba.TCPCliente
 
             XmlWriterSettings settings = new XmlWriterSettings()
             {
-                Encoding = new UnicodeEncoding(false, false), 
+                Encoding = new UnicodeEncoding(false, false),
                 Indent = false,
                 OmitXmlDeclaration = false
             };
@@ -220,7 +220,7 @@ namespace Prueba.TCPCliente
                 XmlSerializer xs = new XmlSerializer(typeof(T), new XmlRootAttribute("Canciones"));
 
                 MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlCambio));
-                
+
                 return (T)xs.Deserialize(ms);
             }
             catch (Exception ex)
@@ -229,7 +229,7 @@ namespace Prueba.TCPCliente
                 throw;
             }
         }
-      
+
 
 
 

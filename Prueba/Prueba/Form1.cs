@@ -104,13 +104,9 @@ namespace Prueba
                     mensajeCancion.cancion = CancionesTotal;
                     mensajeCancion.OpCod = "01";
 
-<<<<<<< HEAD
-                    new SocketCliente(mensajeCancion);
-                    loadDataGridView();
-=======
+
 
                    socketPrincipal= new SocketCliente(mensajeCancion);
->>>>>>> 788b2ed2e19602276957276f2cbb9b4f3d98aa75
                     loadDataGridView();
 
 
