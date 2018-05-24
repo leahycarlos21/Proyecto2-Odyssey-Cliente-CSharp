@@ -42,7 +42,7 @@ namespace Prueba
             Main.Show();
             Console.WriteLine(user.nombre);
             Console.WriteLine(user.apellido);
-            Console.WriteLine(user.edad);
+            Console.WriteLine(user.edad);   
             Console.WriteLine(user.id);
             Console.WriteLine(user.password);
             AddDatoMensaje mensajeUsuario = new AddDatoMensaje();

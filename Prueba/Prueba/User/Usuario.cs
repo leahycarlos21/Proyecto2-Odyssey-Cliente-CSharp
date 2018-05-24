@@ -13,6 +13,9 @@ namespace Prueba.User
         public String nombre { get; set; }
         public String apellido { get; set; }
         public String edad { get; set; }
+        public Usuario hojaIzquierda { get; set; }
+        public Usuario hojaDerecha { get; set; }
+
 
         public Usuario(String id, String password, String nombre, String apellido, String edad)
         {
