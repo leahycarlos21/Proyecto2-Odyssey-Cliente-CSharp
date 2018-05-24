@@ -74,6 +74,7 @@ namespace Prueba
 #pragma warning disable CS0618 // El tipo o el miembro están obsoletos
                         cancionEntrante.artista = tagFile.Tag.FirstArtist.ToString();
 #pragma warning restore CS0618 // El tipo o el miembro están obsoletos
+
                         cancionEntrante.album = tagFile.Tag.Album;
                         cancionEntrante.nombreCancion = tagFile.Tag.Title;
                         cancionEntrante.genero = tagFile.Tag.FirstGenre;
@@ -102,8 +103,10 @@ namespace Prueba
                     mensajeCancion.cancion = CancionesTotal;
                     mensajeCancion.OpCod = "01";
 
+
                    socketPrincipal= new SocketCliente(mensajeCancion);
                     loadDataGridView();
+
 
                 }
 
