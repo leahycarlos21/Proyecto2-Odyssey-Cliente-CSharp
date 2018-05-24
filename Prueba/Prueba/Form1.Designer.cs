@@ -50,6 +50,8 @@
             this.siguientebutton = new System.Windows.Forms.Button();
             this.pageLabel = new System.Windows.Forms.Label();
             this.eliminarbtn = new System.Windows.Forms.Button();
+            this.editarbtn = new System.Windows.Forms.Button();
+            this.reloadbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Agregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlaybackPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
@@ -249,7 +251,7 @@
             // 
             // eliminarbtn
             // 
-            this.eliminarbtn.Location = new System.Drawing.Point(633, 25);
+            this.eliminarbtn.Location = new System.Drawing.Point(20, 403);
             this.eliminarbtn.Name = "eliminarbtn";
             this.eliminarbtn.Size = new System.Drawing.Size(75, 23);
             this.eliminarbtn.TabIndex = 22;
@@ -257,12 +259,34 @@
             this.eliminarbtn.UseVisualStyleBackColor = true;
             this.eliminarbtn.Click += new System.EventHandler(this.eliminarbtn_Click);
             // 
+            // editarbtn
+            // 
+            this.editarbtn.Location = new System.Drawing.Point(116, 403);
+            this.editarbtn.Name = "editarbtn";
+            this.editarbtn.Size = new System.Drawing.Size(75, 23);
+            this.editarbtn.TabIndex = 23;
+            this.editarbtn.Text = "Editar";
+            this.editarbtn.UseVisualStyleBackColor = true;
+            this.editarbtn.Click += new System.EventHandler(this.editarbtn_Click);
+            // 
+            // reloadbtn
+            // 
+            this.reloadbtn.Location = new System.Drawing.Point(1020, 419);
+            this.reloadbtn.Name = "reloadbtn";
+            this.reloadbtn.Size = new System.Drawing.Size(75, 23);
+            this.reloadbtn.TabIndex = 24;
+            this.reloadbtn.Text = "button6";
+            this.reloadbtn.UseVisualStyleBackColor = true;
+            this.reloadbtn.Click += new System.EventHandler(this.reloadbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1278, 570);
+            this.Controls.Add(this.reloadbtn);
+            this.Controls.Add(this.editarbtn);
             this.Controls.Add(this.eliminarbtn);
             this.Controls.Add(this.pageLabel);
             this.Controls.Add(this.siguientebutton);
@@ -316,6 +340,8 @@
         private System.Windows.Forms.Button siguientebutton;
         private System.Windows.Forms.Label pageLabel;
         private System.Windows.Forms.Button eliminarbtn;
+        private System.Windows.Forms.Button editarbtn;
+        private System.Windows.Forms.Button reloadbtn;
     }
 }
 

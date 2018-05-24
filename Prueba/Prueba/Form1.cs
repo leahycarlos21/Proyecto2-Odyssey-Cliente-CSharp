@@ -40,6 +40,7 @@ namespace Prueba
             dGV.Columns.Add("Género", "Género");
             dGV.Columns.Add("Letra", "Letra");
             loadDataGridView();
+            editarbtn.Enabled = false;
         }
 
 
@@ -102,7 +103,8 @@ namespace Prueba
                     mensajeCancion.cancion = CancionesTotal;
                     mensajeCancion.OpCod = "01";
 
-                   socketPrincipal= new SocketCliente(mensajeCancion);
+                    new SocketCliente(mensajeCancion);
+                    loadDataGridView();
                     loadDataGridView();
 
                 }
@@ -278,6 +280,7 @@ namespace Prueba
 
         private void dGV_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
+            editarbtn.Enabled = true;
             cancionSelect[0] = dGV.Rows[e.RowIndex].Cells["Artista"].Value.ToString();
             cancionSelect[1] = dGV.Rows[e.RowIndex].Cells["Canción"].Value.ToString();
 
@@ -321,6 +324,22 @@ namespace Prueba
         private void anteriorbutton_Click(object sender, EventArgs e)
         {
             lazyLoadingPos -= 3;
+            loadDataGridView();
+        }
+
+        private void editarbtn_Click(object sender, EventArgs e)
+        {
+            FormEditar formEdit = new FormEditar(selectDVG[0]);
+          //  formEdit.cancion = selectDVG[0];
+            formEdit.Show();
+            loadDataGridView();
+            loadDataGridView();
+
+
+        }
+
+        private void reloadbtn_Click(object sender, EventArgs e)
+        {
             loadDataGridView();
         }
     }

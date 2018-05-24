@@ -92,29 +92,15 @@ namespace Prueba.TCPCliente
 
             /**AQUI SE DEBE IMPLEMENTAR LO QUE SE VE HACER CON LO QUE HIZO EL SERVER*/
             //Leer del servidor
-            //  ReceiveAll(networkStream);
-
-
-            // Do something with the resultStream, like resultStream.ToArray() ...
 
             StreamReader data_in = new StreamReader(tcpClient.GetStream());
-            //  Console.WriteLine(data_in.ReadToEnd());
-            //  data_in.ToString();
-           
+            
+           //El resultado recibido se asigna al datorecibido
             String datorecibido = data_in.ReadToEnd();
             tcpClient.Close();
             networkStream.Close();
             data_in.Close();
-            // networkStream.Read(datoByte, 0, 99999999);
-            // 444448847
-
-            //El dato que se va a obtener
-            //    String datorecibido = Encoding.UTF8.GetString(bytecito);
-
-            //Quita los bytes sobrantes
-            //  datorecibido = datorecibido.Replace("\0", string.Empty);
-            // datorecibido = datorecibido.Substring(0, datorecibido.IndexOf(char.ConvertFromUtf32(0)));
-            //Console.WriteLine(datorecibido);
+           
             if (mensaje.OpCod.Equals("01"))
             {
                 MessageBox.Show(datorecibido);
@@ -128,9 +114,7 @@ namespace Prueba.TCPCliente
                     ListaRecibida = datoServer;
                     cantidadTotal = datoServer.Length;
                 }
-               
-
-
+              
             }
             //Para solicitar los bytes y reproducir
             else if (mensaje.OpCod.Equals("04")){
@@ -167,7 +151,7 @@ namespace Prueba.TCPCliente
 
             XmlWriterSettings settings = new XmlWriterSettings()
             {
-                Encoding = new UnicodeEncoding(false, false), // no BOM in a .NET string
+                Encoding = new UnicodeEncoding(false, false), 
                 Indent = false,
                 OmitXmlDeclaration = false
             };
