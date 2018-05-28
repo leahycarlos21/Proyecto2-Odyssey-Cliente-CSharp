@@ -24,7 +24,7 @@ namespace Prueba
             artistatxt.Text = cancionEntrante.artista;
             albumtxt.Text = cancionEntrante.album;
             generotxt.Text = cancionEntrante.genero;
-            letratxt.Text = cancionEntrante.letra;
+
             cancionEditar = cancionEntrante;
             listaEdit[0]=cancionEntrante;
 
@@ -42,11 +42,13 @@ namespace Prueba
 
         private void button1_Click(object sender, EventArgs e)
         {
+            letraCBox.DropDownStyle = ComboBoxStyle.DropDownList;
             cancionEditar.nombreCancion=nombretxt.Text;
             cancionEditar.artista = artistatxt.Text;
             cancionEditar.album= albumtxt.Text;
             cancionEditar.genero = generotxt.Text;
-            cancionEditar.letra = letratxt.Text;
+            cancionEditar.puntaje = Int32.Parse(letraCBox.Text) ;
+
             listaEdit[1] = cancionEditar;
             AddDatoMensaje mensajeCancion = new AddDatoMensaje();
             mensajeCancion.cancion = listaEdit;

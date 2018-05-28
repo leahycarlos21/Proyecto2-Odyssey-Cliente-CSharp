@@ -37,9 +37,9 @@
             this.artistatxt = new System.Windows.Forms.TextBox();
             this.albumtxt = new System.Windows.Forms.TextBox();
             this.generotxt = new System.Windows.Forms.TextBox();
-            this.letratxt = new System.Windows.Forms.TextBox();
             this.confirmbtn = new System.Windows.Forms.Button();
             this.cancelbtn = new System.Windows.Forms.Button();
+            this.letraCBox = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // label1
@@ -116,14 +116,6 @@
             this.generotxt.Size = new System.Drawing.Size(179, 20);
             this.generotxt.TabIndex = 8;
             // 
-            // letratxt
-            // 
-            this.letratxt.Location = new System.Drawing.Point(128, 160);
-            this.letratxt.Multiline = true;
-            this.letratxt.Name = "letratxt";
-            this.letratxt.Size = new System.Drawing.Size(179, 173);
-            this.letratxt.TabIndex = 9;
-            // 
             // confirmbtn
             // 
             this.confirmbtn.Location = new System.Drawing.Point(101, 337);
@@ -144,14 +136,28 @@
             this.cancelbtn.UseVisualStyleBackColor = true;
             this.cancelbtn.Click += new System.EventHandler(this.cancelbtn_Click);
             // 
+            // letraCBox
+            // 
+            this.letraCBox.FormattingEnabled = true;
+            this.letraCBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4",
+            "5"});
+            this.letraCBox.Location = new System.Drawing.Point(128, 160);
+            this.letraCBox.Name = "letraCBox";
+            this.letraCBox.Size = new System.Drawing.Size(121, 21);
+            this.letraCBox.TabIndex = 12;
+            // 
             // FormEditar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(319, 372);
+            this.Controls.Add(this.letraCBox);
             this.Controls.Add(this.cancelbtn);
             this.Controls.Add(this.confirmbtn);
-            this.Controls.Add(this.letratxt);
             this.Controls.Add(this.generotxt);
             this.Controls.Add(this.albumtxt);
             this.Controls.Add(this.artistatxt);
@@ -180,8 +186,8 @@
         private System.Windows.Forms.TextBox artistatxt;
         private System.Windows.Forms.TextBox albumtxt;
         private System.Windows.Forms.TextBox generotxt;
-        private System.Windows.Forms.TextBox letratxt;
         private System.Windows.Forms.Button confirmbtn;
         private System.Windows.Forms.Button cancelbtn;
+        private System.Windows.Forms.ComboBox letraCBox;
     }
 }

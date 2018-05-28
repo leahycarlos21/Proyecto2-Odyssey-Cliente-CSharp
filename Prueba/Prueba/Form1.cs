@@ -23,6 +23,8 @@ namespace Prueba
         private Canciones[] CancionesDGV;
         private int pageNumber = 1;
         public String[] cancionSelect = new String[2];
+
+        //Canción selecionada en el DataGridView
         public Canciones[] selectDVG = new Canciones[1];
         private int lazyLoadingPos = 1;
 
@@ -38,8 +40,8 @@ namespace Prueba
             dGV.Columns.Add("Album", "Album");
             dGV.Columns.Add("Canción", "Canción");
             dGV.Columns.Add("Género", "Género");
-            dGV.Columns.Add("Letra", "Letra");
-            loadDataGridView();
+            dGV.Columns.Add("Puntaje", "Puntaje");
+         //   loadDataGridView();
             editarbtn.Enabled = false;
         }
 
@@ -80,15 +82,12 @@ namespace Prueba
                         cancionEntrante.nombreCancion = tagFile.Tag.Title;
                         cancionEntrante.genero = tagFile.Tag.FirstGenre;
                         cancionEntrante.letra = tagFile.Tag.Comment;
+                        cancionEntrante.puntaje = 0;
                         byte[] bytesCancionSelect = ReadAllBytes(rutasMP3[cantidadMp3].ToString());
                         Console.WriteLine("largo de bytes es" + bytesCancionSelect.Length);
                         cancionEntrante.bytesSong = bytesCancionSelect;
                         CancionesTotal[cantidadMp3] = cancionEntrante;
 
-
-                        //CancionesTotal[1] = cancionEntrante;
-
-                        //  CancionesTotal[1] = cancionEntrante;
 
 
                         ///https://stackoverflow.com/questions/1003275/how-to-convert-utf-8-byte-to-string
@@ -190,7 +189,7 @@ namespace Prueba
            for (int i = 0; i < CancionesDGV.Length; i++)
             {
                 dGV.Rows.Add(new object[] { CancionesDGV[i].artista, CancionesDGV[i].album,
-                CancionesDGV[i].nombreCancion,CancionesDGV[i].genero,CancionesDGV[i].letra});
+                CancionesDGV[i].nombreCancion,CancionesDGV[i].genero,CancionesDGV[i].puntaje});
             }
         }
 
@@ -294,15 +293,21 @@ namespace Prueba
                 if (CancionesDGV[i].artista.Equals(cancionSelect[0])
                     && CancionesDGV[i].nombreCancion.Equals(cancionSelect[1]))
                 {
-                    AddDatoMensaje mensajeCancion = new AddDatoMensaje();
-                    mensajeCancion.cancion = new Canciones[1];
-                    mensajeCancion.cancion[0] = CancionesDGV[i];
-                    mensajeCancion.OpCod = "04";
+                    AddDatoMensaje mensajeCancionis = new AddDatoMensaje();
+                    mensajeCancionis.cancion = new Canciones[1];
+                    mensajeCancionis.cancion[0] = CancionesDGV[i];
+                    mensajeCancionis.OpCod = "04";
+                    
 
-                    socketPrincipal=new SocketCliente(mensajeCancion);
+
+                    SocketCliente socketis = new SocketCliente(mensajeCancionis);
+                   
+                    //Afirma que la canción esta disponible
                     MessageBox.Show("Canción disponible");
                     selectDVG[0] = CancionesDGV[i];
-                    cargarArchivo(socketPrincipal.ListaRecibida[0].bytesSong);
+                    letraTbox.Text = "";
+                    letraTbox.Text += selectDVG[0].letra;
+                    cargarArchivo(socketis.ListaRecibida[0].bytesSong);
                     break;
                 }
             }
@@ -333,7 +338,6 @@ namespace Prueba
         private void editarbtn_Click(object sender, EventArgs e)
         {
             FormEditar formEdit = new FormEditar(selectDVG[0]);
-          //  formEdit.cancion = selectDVG[0];
             formEdit.Show();
             loadDataGridView();
             loadDataGridView();
@@ -343,6 +347,53 @@ namespace Prueba
 
         private void reloadbtn_Click(object sender, EventArgs e)
         {
+            loadDataGridView();
+        }
+
+        private void Musixbtn_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje addDatoMensaje = new AddDatoMensaje();
+            addDatoMensaje.cancion = selectDVG;
+            addDatoMensaje.OpCod = "07";
+            new SocketCliente(addDatoMensaje);
+
+
+
+        }
+
+        private void letraTbox_TextChanged(object sender, EventArgs e)
+        {
+                
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+            EcualizadorForm ecuaForm = new EcualizadorForm();
+            ecuaForm.Show();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje mensajeCancionis = new AddDatoMensaje();
+           
+            mensajeCancionis.OpCod = "8.1";
+            new SocketCliente(mensajeCancionis);
+            loadDataGridView();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje mensajeCancionis = new AddDatoMensaje();
+            mensajeCancionis.OpCod = "8.2";
+            new SocketCliente(mensajeCancionis);
+            loadDataGridView();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje mensajeCancionis = new AddDatoMensaje();
+            mensajeCancionis.OpCod = "8.3";
+            new SocketCliente(mensajeCancionis);
             loadDataGridView();
         }
     }

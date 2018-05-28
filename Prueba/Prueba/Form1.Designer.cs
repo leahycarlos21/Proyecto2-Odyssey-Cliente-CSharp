@@ -37,7 +37,6 @@
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.buttonPlay = new System.Windows.Forms.Button();
@@ -52,6 +51,11 @@
             this.eliminarbtn = new System.Windows.Forms.Button();
             this.editarbtn = new System.Windows.Forms.Button();
             this.reloadbtn = new System.Windows.Forms.Button();
+            this.Musixbtn = new System.Windows.Forms.Button();
+            this.letraTbox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.button5 = new System.Windows.Forms.Button();
+            this.ecualizadorBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Agregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlaybackPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
@@ -106,39 +110,33 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(864, 26);
+            this.button1.Location = new System.Drawing.Point(917, 22);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 25);
             this.button1.TabIndex = 8;
             this.button1.Text = "Nombre de canción";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(864, 57);
+            this.button2.Location = new System.Drawing.Point(917, 57);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 23);
             this.button2.TabIndex = 9;
             this.button2.Text = "Artista";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(864, 86);
+            this.button3.Location = new System.Drawing.Point(917, 86);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(160, 22);
             this.button3.TabIndex = 10;
             this.button3.Text = "Álbum";
             this.button3.UseVisualStyleBackColor = true;
-            // 
-            // button4
-            // 
-            this.button4.Location = new System.Drawing.Point(864, 114);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(159, 23);
-            this.button4.TabIndex = 11;
-            this.button4.Text = "Letra de la canción";
-            this.button4.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // label3
             // 
@@ -271,13 +269,60 @@
             // 
             // reloadbtn
             // 
-            this.reloadbtn.Location = new System.Drawing.Point(1020, 419);
+            this.reloadbtn.Location = new System.Drawing.Point(709, 24);
             this.reloadbtn.Name = "reloadbtn";
             this.reloadbtn.Size = new System.Drawing.Size(75, 23);
             this.reloadbtn.TabIndex = 24;
-            this.reloadbtn.Text = "button6";
+            this.reloadbtn.Text = "Refresh";
             this.reloadbtn.UseVisualStyleBackColor = true;
             this.reloadbtn.Click += new System.EventHandler(this.reloadbtn_Click);
+            // 
+            // Musixbtn
+            // 
+            this.Musixbtn.Location = new System.Drawing.Point(203, 403);
+            this.Musixbtn.Name = "Musixbtn";
+            this.Musixbtn.Size = new System.Drawing.Size(75, 23);
+            this.Musixbtn.TabIndex = 25;
+            this.Musixbtn.Text = "MusixMatch";
+            this.Musixbtn.UseVisualStyleBackColor = true;
+            this.Musixbtn.Click += new System.EventHandler(this.Musixbtn_Click);
+            // 
+            // letraTbox
+            // 
+            this.letraTbox.Location = new System.Drawing.Point(845, 177);
+            this.letraTbox.Multiline = true;
+            this.letraTbox.Name = "letraTbox";
+            this.letraTbox.Size = new System.Drawing.Size(282, 265);
+            this.letraTbox.TabIndex = 26;
+            this.letraTbox.TextChanged += new System.EventHandler(this.letraTbox_TextChanged);
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(968, 161);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(47, 13);
+            this.label5.TabIndex = 27;
+            this.label5.Text = "Karaoke";
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(0, 0);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 28;
+            this.button5.Text = "button5";
+            this.button5.UseVisualStyleBackColor = true;
+            // 
+            // ecualizadorBtn
+            // 
+            this.ecualizadorBtn.Location = new System.Drawing.Point(297, 403);
+            this.ecualizadorBtn.Name = "ecualizadorBtn";
+            this.ecualizadorBtn.Size = new System.Drawing.Size(75, 23);
+            this.ecualizadorBtn.TabIndex = 29;
+            this.ecualizadorBtn.Text = "Ecualizador";
+            this.ecualizadorBtn.UseVisualStyleBackColor = true;
+            this.ecualizadorBtn.Click += new System.EventHandler(this.button6_Click);
             // 
             // Form1
             // 
@@ -285,6 +330,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1278, 570);
+            this.Controls.Add(this.ecualizadorBtn);
+            this.Controls.Add(this.button5);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.letraTbox);
+            this.Controls.Add(this.Musixbtn);
             this.Controls.Add(this.reloadbtn);
             this.Controls.Add(this.editarbtn);
             this.Controls.Add(this.eliminarbtn);
@@ -298,7 +348,6 @@
             this.Controls.Add(this.buttonPlay);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
@@ -327,7 +376,6 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
-        private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button buttonPlay;
@@ -342,6 +390,11 @@
         private System.Windows.Forms.Button eliminarbtn;
         private System.Windows.Forms.Button editarbtn;
         private System.Windows.Forms.Button reloadbtn;
+        private System.Windows.Forms.Button Musixbtn;
+        private System.Windows.Forms.TextBox letraTbox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Button ecualizadorBtn;
     }
 }
 

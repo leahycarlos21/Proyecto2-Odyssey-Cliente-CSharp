@@ -122,6 +122,7 @@ namespace Prueba.TCPCliente
             //Para solicitar los bytes y reproducir
             else if (mensaje.OpCod.Equals("04"))
             {
+               
                 Console.WriteLine("CancionRecibida");
                 Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
                 ListaRecibida = datoServer;
