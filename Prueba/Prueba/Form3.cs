@@ -16,7 +16,7 @@ namespace Prueba
 {
     public partial class Form3 : Form
     {
-        public String nickName { get; set; }
+        public String id { get; set; }
         public String password { get; set; }
         public String nombre { get; set; }
         public String apellido { get; set; }
@@ -35,11 +35,12 @@ namespace Prueba
         private void button1_Click(object sender, EventArgs e)
         {
             //Se crea el usuraio y se le asignan cada valor escrito en los TextBox del Form
-            Usuario user = new Usuario(nickName, password, nombre, apellido, edad);
+            Usuario user = new Usuario(id, password, nombre, apellido, edad);
             Console.WriteLine("se creo el usuario");
             this.Hide();
             Form1 Main = new Form1();
             Main.Show();
+          
             AddDatoMensaje mensajeUsuario = new AddDatoMensaje();
             mensajeUsuario.usuario = user;
             mensajeUsuario.OpCod = "02";
@@ -75,7 +76,7 @@ namespace Prueba
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            nickName = textBox1.Text;
+            id = textBox1.Text;
 
         }
 

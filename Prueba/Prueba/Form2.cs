@@ -28,7 +28,7 @@ namespace Prueba
         {
 
         }
-
+        
         private void button2_Click(object sender, EventArgs e)
         {
             Usuario user = new Usuario();
@@ -49,7 +49,7 @@ namespace Prueba
         {
 
         }
-
+        //Se crea una nueva ventana de registro crear un nuevo usuario.
         private void button1_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -61,13 +61,13 @@ namespace Prueba
         {
 
         }
-
+        //Caja de texto en el cual se va a ingresar el nombre de usuario.
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
             nickName = textBox1.Text;
 
         }
-
+        //Caja de texto donde se insertara la contrasena, el programa la encrypa
         private void textBox2_TextChanged(object sender, EventArgs e)
         {
             password = EncryptPasswords(textBox2.Text);
@@ -90,6 +90,11 @@ namespace Prueba
         }
 
         private void pictureBox2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
         {
 
         }
