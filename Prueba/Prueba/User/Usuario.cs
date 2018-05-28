@@ -15,9 +15,8 @@ namespace Prueba.User
         public String edad { get; set; }
         public Usuario hojaIzquierda { get; set; }
         public Usuario hojaDerecha { get; set; }
-        //public [] mensajes {get; set;}
 
-        //Constructores para los Usuarios
+        //Constructores pa
         public Usuario(String nickName, String password, String nombre, String apellido, String edad)
         {
             this.nickName = nickName;

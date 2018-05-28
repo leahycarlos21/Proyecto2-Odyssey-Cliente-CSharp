@@ -39,9 +39,7 @@ namespace Prueba
             mensajeUsuario.OpCod = "06";
             Console.WriteLine("Va a entrar usuario");
             new SocketCliente(mensajeUsuario);
-            this.Hide();
-            Form1 Main = new Form1();
-            Main.Show();
+            
 
         }
 
