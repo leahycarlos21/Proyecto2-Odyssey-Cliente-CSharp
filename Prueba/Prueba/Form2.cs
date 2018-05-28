@@ -15,7 +15,7 @@ using System.Windows.Forms;
 namespace Prueba
 {
     public partial class Form2 : Form { 
-        public String id { get; set; }
+        public String nickName { get; set; }
         public String password { get; set; }
 
     
@@ -32,11 +32,8 @@ namespace Prueba
         private void button2_Click(object sender, EventArgs e)
         {
             Usuario user = new Usuario();
-            user.id = id;
+            user.nickName = nickName;
             user.password = password;
-            Console.WriteLine("se creo el usuario");
-            Console.WriteLine(user.id);
-            Console.WriteLine(user.password);
             AddDatoMensaje mensajeUsuario = new AddDatoMensaje();
             mensajeUsuario.usuario = user;
             mensajeUsuario.OpCod = "06";
@@ -67,7 +64,7 @@ namespace Prueba
 
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
-            id = textBox1.Text;
+            nickName = textBox1.Text;
 
         }
 

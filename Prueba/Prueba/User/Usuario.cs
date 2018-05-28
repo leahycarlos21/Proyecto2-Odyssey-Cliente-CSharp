@@ -8,7 +8,7 @@ namespace Prueba.User
 {
     public class Usuario
     {
-        public String id { get; set; }
+        public String nickName { get; set; }
         public String password { get; set; }
         public String nombre { get; set; }
         public String apellido { get; set; }
@@ -18,9 +18,9 @@ namespace Prueba.User
         //public [] mensajes {get; set;}
 
 
-        public Usuario(String id, String password, String nombre, String apellido, String edad)
+        public Usuario(String nickName, String password, String nombre, String apellido, String edad)
         {
-            this.id = id;
+            this.nickName = nickName;
             this.password = password;
             this.nombre = nombre;
             this.apellido = apellido;
