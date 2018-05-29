@@ -26,7 +26,7 @@ namespace Prueba.TCPCliente
         public SocketCliente(AddDatoMensaje mensajeEntrante)
         {
 
-            //http://www.srikanthtechnologies.com/blog/java/java_cs_xml.aspx
+            
             /**
              * El codigo de operacion se asigan al momento de crear el AddDatoMensaje en el metodo seleccionado, aqui solamente invoca la funcion usarSocket
              */
@@ -128,6 +128,24 @@ namespace Prueba.TCPCliente
                 ListaRecibida = datoServer;
                 cantidadTotal = datoServer.Length;
 
+            }
+            else if (mensaje.OpCod.Equals("022"))
+            {
+                if (datorecibido.Equals("1"))
+                {
+                    Console.WriteLine("Usuario correcto");
+                    Form2 form2 = new Form2();
+                    form2.Close();
+                    Form1 Main = new Form1();
+                    Main.Show();
+
+                }
+                else
+                {
+                    Console.WriteLine("Usuario inccorrecto");
+                    MessageBox.Show("No existe prrrooo");
+
+                }
             }
             networkStream.Close();
 

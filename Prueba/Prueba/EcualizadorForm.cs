@@ -29,5 +29,11 @@ namespace Prueba
         {
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            analyzer.Enable = false;
+            this.Close();
+        }
     }
 }

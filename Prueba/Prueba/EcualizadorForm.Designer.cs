@@ -39,6 +39,7 @@
             this.timer3 = new System.Windows.Forms.Timer(this.components);
             this.spectrum1 = new System.Windows.Forms.Integration.ElementHost();
             this.espectroControl1 = new Prueba.EspectroControl();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.chart1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -99,11 +100,22 @@
             this.spectrum1.Text = "elementHost1";
             this.spectrum1.Child = this.espectroControl1;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(541, 84);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // EcualizadorForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(551, 286);
+            this.ClientSize = new System.Drawing.Size(628, 287);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.chart1);
             this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.progressBar2);
@@ -128,5 +140,6 @@
         private System.Windows.Forms.Timer timer1;
         private System.Windows.Forms.Timer timer2;
         private System.Windows.Forms.Timer timer3;
+        private System.Windows.Forms.Button button1;
     }
 }

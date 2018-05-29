@@ -84,9 +84,9 @@
             this.label5.AutoSize = true;
             this.label5.Location = new System.Drawing.Point(36, 160);
             this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(34, 13);
+            this.label5.Size = new System.Drawing.Size(46, 13);
             this.label5.TabIndex = 4;
-            this.label5.Text = "Letra:";
+            this.label5.Text = "Puntaje:";
             // 
             // nombretxt
             // 

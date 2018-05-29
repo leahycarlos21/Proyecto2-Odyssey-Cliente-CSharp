@@ -6,13 +6,26 @@ using System.Threading.Tasks;
 
 namespace Prueba.User
 {
-    class Usuario
+    public class Usuario
     {
-        private String id { get; set; }
-        private String password { get; set; }
-        private String nombre { get; set; }
-        private String apellido { get; set; }
-        private String edad { get; set; }
+        public String nickName { get; set; }
+        public String password { get; set; }
+        public String nombre { get; set; }
+        public String apellido { get; set; }
+        public String edad { get; set; }
+        public Usuario hojaIzquierda { get; set; }
+        public Usuario hojaDerecha { get; set; }
+
+        //Constructores pa
+        public Usuario(String nickName, String password, String nombre, String apellido, String edad)
+        {
+            this.nickName = nickName;
+            this.password = password;
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.edad = edad;
+
+        }
 
         public Usuario()
         {
