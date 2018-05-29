@@ -45,7 +45,7 @@ namespace Prueba
             user.edad = textBox2.Text;
             Console.WriteLine("se creo el usuario");
             this.Hide();
-            Form1 Main = new Form1();
+            Form1 Main = new Form1(user);
             Main.Show();
 
             AddDatoMensaje mensajeUsuario = new AddDatoMensaje();

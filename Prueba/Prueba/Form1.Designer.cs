@@ -31,9 +31,9 @@
             this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.Agregar = new System.Windows.Forms.PictureBox();
-            this.Ordenar = new System.Windows.Forms.ComboBox();
+            this.OrdenarCombobox = new System.Windows.Forms.ComboBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.Buscar = new System.Windows.Forms.TextBox();
+            this.Buscartxt = new System.Windows.Forms.TextBox();
             this.button1 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
@@ -54,8 +54,11 @@
             this.Musixbtn = new System.Windows.Forms.Button();
             this.letraTbox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.button5 = new System.Windows.Forms.Button();
             this.ecualizadorBtn = new System.Windows.Forms.Button();
+            this.buscarbtn = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.listAmigos = new System.Windows.Forms.ListBox();
+            this.addAmigosbtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Agregar)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.trackBarPlaybackPosition)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dGV)).BeginInit();
@@ -83,14 +86,18 @@
             this.Agregar.TabStop = false;
             this.Agregar.Click += new System.EventHandler(this.Agregar_Click);
             // 
-            // Ordenar
+            // OrdenarCombobox
             // 
-            this.Ordenar.FormattingEnabled = true;
-            this.Ordenar.Location = new System.Drawing.Point(463, 26);
-            this.Ordenar.Name = "Ordenar";
-            this.Ordenar.Size = new System.Drawing.Size(108, 21);
-            this.Ordenar.TabIndex = 5;
-            this.Ordenar.Text = "Ordenar";
+            this.OrdenarCombobox.FormattingEnabled = true;
+            this.OrdenarCombobox.Items.AddRange(new object[] {
+            "Nombre",
+            "Artista",
+            "Album"});
+            this.OrdenarCombobox.Location = new System.Drawing.Point(442, 24);
+            this.OrdenarCombobox.Name = "OrdenarCombobox";
+            this.OrdenarCombobox.Size = new System.Drawing.Size(108, 21);
+            this.OrdenarCombobox.TabIndex = 5;
+            this.OrdenarCombobox.Text = "Buscar";
             // 
             // label2
             // 
@@ -101,16 +108,16 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Buscar canción:";
             // 
-            // Buscar
+            // Buscartxt
             // 
-            this.Buscar.Location = new System.Drawing.Point(197, 25);
-            this.Buscar.Name = "Buscar";
-            this.Buscar.Size = new System.Drawing.Size(239, 20);
-            this.Buscar.TabIndex = 7;
+            this.Buscartxt.Location = new System.Drawing.Point(197, 25);
+            this.Buscartxt.Name = "Buscartxt";
+            this.Buscartxt.Size = new System.Drawing.Size(239, 20);
+            this.Buscartxt.TabIndex = 7;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(917, 22);
+            this.button1.Location = new System.Drawing.Point(851, 52);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(160, 25);
             this.button1.TabIndex = 8;
@@ -120,7 +127,7 @@
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(917, 57);
+            this.button2.Location = new System.Drawing.Point(851, 83);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(160, 23);
             this.button2.TabIndex = 9;
@@ -130,7 +137,7 @@
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(917, 86);
+            this.button3.Location = new System.Drawing.Point(851, 112);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(160, 22);
             this.button3.TabIndex = 10;
@@ -141,7 +148,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(1105, 57);
+            this.label3.Location = new System.Drawing.Point(1129, 443);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 13);
             this.label3.TabIndex = 12;
@@ -150,7 +157,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(1105, 26);
+            this.label4.Location = new System.Drawing.Point(1161, 133);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(49, 13);
             this.label4.TabIndex = 13;
@@ -289,7 +296,7 @@
             // 
             // letraTbox
             // 
-            this.letraTbox.Location = new System.Drawing.Point(845, 177);
+            this.letraTbox.Location = new System.Drawing.Point(790, 176);
             this.letraTbox.Multiline = true;
             this.letraTbox.Name = "letraTbox";
             this.letraTbox.Size = new System.Drawing.Size(282, 265);
@@ -299,20 +306,12 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(968, 161);
+            this.label5.Location = new System.Drawing.Point(890, 160);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 13);
             this.label5.TabIndex = 27;
             this.label5.Text = "Karaoke";
-            // 
-            // button5
-            // 
-            this.button5.Location = new System.Drawing.Point(0, 0);
-            this.button5.Name = "button5";
-            this.button5.Size = new System.Drawing.Size(75, 23);
-            this.button5.TabIndex = 28;
-            this.button5.Text = "button5";
-            this.button5.UseVisualStyleBackColor = true;
+            this.label5.Click += new System.EventHandler(this.label5_Click);
             // 
             // ecualizadorBtn
             // 
@@ -324,14 +323,55 @@
             this.ecualizadorBtn.UseVisualStyleBackColor = true;
             this.ecualizadorBtn.Click += new System.EventHandler(this.button6_Click);
             // 
+            // buscarbtn
+            // 
+            this.buscarbtn.Location = new System.Drawing.Point(568, 21);
+            this.buscarbtn.Name = "buscarbtn";
+            this.buscarbtn.Size = new System.Drawing.Size(75, 23);
+            this.buscarbtn.TabIndex = 31;
+            this.buscarbtn.Text = "Buscar";
+            this.buscarbtn.UseVisualStyleBackColor = true;
+            this.buscarbtn.Click += new System.EventHandler(this.buscarbtn_Click);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(908, 29);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(45, 13);
+            this.label6.TabIndex = 32;
+            this.label6.Text = "Ordenar";
+            // 
+            // listAmigos
+            // 
+            this.listAmigos.FormattingEnabled = true;
+            this.listAmigos.Location = new System.Drawing.Point(1145, 149);
+            this.listAmigos.Name = "listAmigos";
+            this.listAmigos.Size = new System.Drawing.Size(101, 95);
+            this.listAmigos.TabIndex = 33;
+            this.listAmigos.SelectedIndexChanged += new System.EventHandler(this.listAmigos_SelectedIndexChanged);
+            // 
+            // addAmigosbtn
+            // 
+            this.addAmigosbtn.Location = new System.Drawing.Point(1135, 9);
+            this.addAmigosbtn.Name = "addAmigosbtn";
+            this.addAmigosbtn.Size = new System.Drawing.Size(111, 23);
+            this.addAmigosbtn.TabIndex = 34;
+            this.addAmigosbtn.Text = "Buscar Amigos";
+            this.addAmigosbtn.UseVisualStyleBackColor = true;
+            this.addAmigosbtn.Click += new System.EventHandler(this.addAmigosbtn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(1278, 570);
+            this.Controls.Add(this.addAmigosbtn);
+            this.Controls.Add(this.listAmigos);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.buscarbtn);
             this.Controls.Add(this.ecualizadorBtn);
-            this.Controls.Add(this.button5);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.letraTbox);
             this.Controls.Add(this.Musixbtn);
@@ -351,9 +391,9 @@
             this.Controls.Add(this.button3);
             this.Controls.Add(this.button2);
             this.Controls.Add(this.button1);
-            this.Controls.Add(this.Buscar);
+            this.Controls.Add(this.Buscartxt);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.Ordenar);
+            this.Controls.Add(this.OrdenarCombobox);
             this.Controls.Add(this.Agregar);
             this.Controls.Add(this.label1);
             this.Name = "Form1";
@@ -370,9 +410,9 @@
         #endregion
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox Agregar;
-        private System.Windows.Forms.ComboBox Ordenar;
+        private System.Windows.Forms.ComboBox OrdenarCombobox;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox Buscar;
+        private System.Windows.Forms.TextBox Buscartxt;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button3;
@@ -393,8 +433,11 @@
         private System.Windows.Forms.Button Musixbtn;
         private System.Windows.Forms.TextBox letraTbox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button button5;
         private System.Windows.Forms.Button ecualizadorBtn;
+        private System.Windows.Forms.Button buscarbtn;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ListBox listAmigos;
+        private System.Windows.Forms.Button addAmigosbtn;
     }
 }
 

@@ -15,12 +15,14 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.Windows.Forms;
 using System.Threading;
+using Prueba.User;
 
 namespace Prueba.TCPCliente
 {
     class SocketCliente
     {
-        public   Canciones[] ListaRecibida { set; get; }
+        public Canciones[] ListaRecibida { set; get; }
+        public Usuario[] usuariosRecibido { set; get; }
         public  int cantidadTotal { set; get; }
 
         public SocketCliente(AddDatoMensaje mensajeEntrante)
@@ -136,16 +138,39 @@ namespace Prueba.TCPCliente
                     Console.WriteLine("Usuario correcto");
                     Form2 form2 = new Form2();
                     form2.Close();
-                    Form1 Main = new Form1();
-                    Main.Show();
+                    cantidadTotal = 100;
 
                 }
                 else
                 {
-                    Console.WriteLine("Usuario inccorrecto");
-                    MessageBox.Show("No existe prrrooo");
+                    MessageBox.Show("No existe, bateador");
 
                 }
+            }
+            else if (mensaje.OpCod.Equals("9.1"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("9.2"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("9.3"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("10"))
+            {
+                Usuario[] datoServer = XMLtoObjectUser<Usuario[]>(datorecibido);
+                usuariosRecibido = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("10.1"))
+            {
+                Usuario[] datoServer = XMLtoObjectUser<Usuario[]>(datorecibido);
+                usuariosRecibido = datoServer;
             }
             networkStream.Close();
 
@@ -158,7 +183,6 @@ namespace Prueba.TCPCliente
             AddDatoMensaje mensaje = new AddDatoMensaje();
             mensaje.OpCod = codigoOp;
             mensaje.cancion = cancion;
-            //  mensaje.cancion.PRUEBAA = "212";
             return mensaje;
         }
 
@@ -237,6 +261,22 @@ namespace Prueba.TCPCliente
             try
             {
                 XmlSerializer xs = new XmlSerializer(typeof(T), new XmlRootAttribute("Canciones"));
+
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlCambio));
+
+                return (T)xs.Deserialize(ms);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("----------------" + ex.GetBaseException());
+                throw;
+            }
+        }
+        private T XMLtoObjectUser<T>(string xmlCambio)
+        {
+            try
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(T), new XmlRootAttribute("Usuario"));
 
                 MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlCambio));
 

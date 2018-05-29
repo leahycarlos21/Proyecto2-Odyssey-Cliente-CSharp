@@ -13,6 +13,7 @@ namespace Prueba.ConexionCliente
     {
         public Canciones[] cancion  { get; set; }
         public Usuario usuario;
+        public Usuario[] usuarioDisponibles;
         public int cantidadTotalSong
         {
             get; set;

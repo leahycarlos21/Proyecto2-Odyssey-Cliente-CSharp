@@ -109,6 +109,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addAmigos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addAmigos.Designer.cs">
+      <DependentUpon>addAmigos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Analizador.cs" />
     <Compile Include="ConexionCliente\AddDatoMensaje.cs" />
     <Compile Include="EcualizadorForm.cs">
@@ -150,6 +156,9 @@
     <Compile Include="ConexionCliente\Mensajes.cs" />
     <Compile Include="ConexionCliente\SocketCliente.cs" />
     <Compile Include="User\Usuario.cs" />
+    <EmbeddedResource Include="addAmigos.resx">
+      <DependentUpon>addAmigos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EcualizadorForm.resx">
       <DependentUpon>EcualizadorForm.cs</DependentUpon>
     </EmbeddedResource>

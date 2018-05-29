@@ -1,6 +1,7 @@
 ﻿using NAudio.Wave;
 using Prueba.ConexionCliente;
 using Prueba.TCPCliente;
+using Prueba.User;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -23,6 +24,7 @@ namespace Prueba
         private Canciones[] CancionesDGV;
         private int pageNumber = 1;
         public String[] cancionSelect = new String[2];
+        public Usuario clienteUser;
 
         //Canción selecionada en el DataGridView
         public Canciones[] selectDVG = new Canciones[1];
@@ -31,8 +33,9 @@ namespace Prueba
         SocketCliente socketPrincipal;
         
         
-        public Form1()
+        public Form1(Usuario cliente)
         {
+            clienteUser=cliente;
             InitializeComponent();
             timer1.Interval = 500;
             timer1.Start();
@@ -79,26 +82,24 @@ namespace Prueba
 #pragma warning restore CS0618 // El tipo o el miembro están obsoletos
 
                         cancionEntrante.album = tagFile.Tag.Album;
+                        if (cancionEntrante.album == null)
+                        {
+                            cancionEntrante.album = "NNNN";
+                        }
                         cancionEntrante.nombreCancion = tagFile.Tag.Title;
                         cancionEntrante.genero = tagFile.Tag.FirstGenre;
                         cancionEntrante.letra = tagFile.Tag.Comment;
                         cancionEntrante.puntaje = 0;
                         byte[] bytesCancionSelect = ReadAllBytes(rutasMP3[cantidadMp3].ToString());
-                        Console.WriteLine("largo de bytes es" + bytesCancionSelect.Length);
                         cancionEntrante.bytesSong = bytesCancionSelect;
                         CancionesTotal[cantidadMp3] = cancionEntrante;
 
 
 
-                        ///https://stackoverflow.com/questions/1003275/how-to-convert-utf-8-byte-to-string
                         cantidadMp3++;
                     }
 
-                  //  cargarArchivo(CancionesTotal[0].bytesSong);
-
-
-                  //  CancionesDGV = CancionesTotal;
-                    //loadDataGridView();
+                  
                     AddDatoMensaje mensajeCancion = new AddDatoMensaje();
                     mensajeCancion.cancion = CancionesTotal;
                     mensajeCancion.OpCod = "01";
@@ -192,7 +193,34 @@ namespace Prueba
                 CancionesDGV[i].nombreCancion,CancionesDGV[i].genero,CancionesDGV[i].puntaje});
             }
         }
+        private void loadDataGridViewBusquedas(Canciones[] cancionesBusqueda) ////////Meter la cancion del ARBOL AL DATAGRIBVIEW
+        {
+            if (lazyLoadingPos.Equals(1))
+            {
+                anteriorbutton.Enabled = false;
+                // buttonStop.Enabled = isPlaying;
+            }
+            else if (!lazyLoadingPos.Equals(1))
+            {
+                anteriorbutton.Enabled = true;
 
+            }
+            dGV.Rows.Clear();
+
+            CancionesDGV = cancionesBusqueda;
+
+
+            
+
+            dGV.Columns[4].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dGV.Columns[4].DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+            for (int i = 0; i < CancionesDGV.Length; i++)
+            {
+                dGV.Rows.Add(new object[] { CancionesDGV[i].artista, CancionesDGV[i].album,
+                CancionesDGV[i].nombreCancion,CancionesDGV[i].genero,CancionesDGV[i].puntaje});
+            }
+        }
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -347,6 +375,7 @@ namespace Prueba
 
         private void reloadbtn_Click(object sender, EventArgs e)
         {
+            Buscartxt.Text = "";
             loadDataGridView();
         }
 
@@ -395,6 +424,74 @@ namespace Prueba
             mensajeCancionis.OpCod = "8.3";
             new SocketCliente(mensajeCancionis);
             loadDataGridView();
+        }
+
+        private void buscarbtn_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje mensaje = new AddDatoMensaje();
+            Canciones[] auxSong = new Canciones[1];
+            auxSong[0] = new Canciones();
+            
+            if (OrdenarCombobox.Text == "Album")
+            {
+                mensaje.OpCod = "9.1";
+                String albumText = Buscartxt.Text;
+                Console.WriteLine(albumText);
+                auxSong[0].album = albumText;
+                mensaje.cancion = auxSong;
+                SocketCliente socket =new SocketCliente(mensaje);
+                loadDataGridViewBusquedas(socket.ListaRecibida);
+
+
+            }
+            else if(OrdenarCombobox.Text == "Artista")
+            {
+                mensaje.OpCod = "9.2";
+                String artistaText = Buscartxt.Text;
+                Console.WriteLine(artistaText);
+                auxSong[0].artista = artistaText;
+                mensaje.cancion = auxSong;
+                SocketCliente socket = new SocketCliente(mensaje);
+                loadDataGridViewBusquedas(socket.ListaRecibida);
+            }
+            else if (OrdenarCombobox.Text == "Nombre")
+            {
+                mensaje.OpCod = "9.3";
+                String cancionText = Buscartxt.Text;
+                Console.WriteLine(cancionText);
+                auxSong[0].nombreCancion = cancionText;
+                mensaje.cancion = auxSong;
+                SocketCliente socket = new SocketCliente(mensaje);
+                loadDataGridViewBusquedas(socket.ListaRecibida);
+            }
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addAmigosbtn_Click(object sender, EventArgs e)
+        {
+            AddDatoMensaje mensaje = new AddDatoMensaje();
+            mensaje.OpCod = "10";
+            SocketCliente socketUsuarios = new SocketCliente(mensaje);
+            Usuario[] usuarios = socketUsuarios.usuariosRecibido;
+            addAmigos formAmigos = new addAmigos(usuarios,clienteUser,listAmigos);
+            formAmigos.Show();
+            
+
+        }
+
+        private void listAmigos_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 

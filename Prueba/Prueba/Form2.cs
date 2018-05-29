@@ -42,7 +42,16 @@ namespace Prueba
             mensajeUsuario.usuario = user;
             mensajeUsuario.OpCod = "022";
             Console.WriteLine("Va a entrar usuario");
-            new SocketCliente(mensajeUsuario);
+            SocketCliente socketin =new SocketCliente(mensajeUsuario);
+            if (socketin.cantidadTotal == 100)
+            {
+                Form1 Main = new Form1(user);
+                Main.Show();
+            }
+            else
+            {
+
+            }
 
 
         }
