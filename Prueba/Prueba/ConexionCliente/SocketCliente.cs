@@ -15,18 +15,20 @@ using System.Xml.Serialization;
 using System.Xml;
 using System.Windows.Forms;
 using System.Threading;
+using Prueba.User;
 
 namespace Prueba.TCPCliente
 {
     class SocketCliente
     {
-        public   Canciones[] ListaRecibida { set; get; }
+        public Canciones[] ListaRecibida { set; get; }
+        public Usuario[] usuariosRecibido { set; get; }
         public  int cantidadTotal { set; get; }
 
         public SocketCliente(AddDatoMensaje mensajeEntrante)
         {
 
-            //http://www.srikanthtechnologies.com/blog/java/java_cs_xml.aspx
+            
             /**
              * El codigo de operacion se asigan al momento de crear el AddDatoMensaje en el metodo seleccionado, aqui solamente invoca la funcion usarSocket
              */
@@ -78,47 +80,32 @@ namespace Prueba.TCPCliente
 
             //IMPORTANTE
 
-            TcpClient tcpClient = new TcpClient("localhost", 5001);
+
+            TcpClient tcpClient = new TcpClient("localhost", 5000);
             NetworkStream networkStream = tcpClient.GetStream();
-            
+
             byte[] datoByte;
 
+            Console.WriteLine();
             string datoEnviar = ObjectXML;
             datoByte = Encoding.UTF8.GetBytes(datoEnviar + "\n");
             //Envia al servidor
             networkStream.Write(datoByte, 0, datoEnviar.Length + 1);
-
-            Console.WriteLine("Se envio la vara");
-
-            networkStream.Close();
+            //  networkStream.Close();
 
 
 
             /**AQUI SE DEBE IMPLEMENTAR LO QUE SE VE HACER CON LO QUE HIZO EL SERVER*/
             //Leer del servidor
-            //  ReceiveAll(networkStream);
-
-
-            // Do something with the resultStream, like resultStream.ToArray() ...
 
             StreamReader data_in = new StreamReader(tcpClient.GetStream());
-            //  Console.WriteLine(data_in.ReadToEnd());
-            //  data_in.ToString();
-           
+
+            //El resultado recibido se asigna al datorecibido
             String datorecibido = data_in.ReadToEnd();
             tcpClient.Close();
             networkStream.Close();
             data_in.Close();
-            // networkStream.Read(datoByte, 0, 99999999);
-            // 444448847
 
-            //El dato que se va a obtener
-            //    String datorecibido = Encoding.UTF8.GetString(bytecito);
-
-            //Quita los bytes sobrantes
-            //  datorecibido = datorecibido.Replace("\0", string.Empty);
-            // datorecibido = datorecibido.Substring(0, datorecibido.IndexOf(char.ConvertFromUtf32(0)));
-            //Console.WriteLine(datorecibido);
             if (mensaje.OpCod.Equals("01"))
             {
                 MessageBox.Show(datorecibido);
@@ -132,17 +119,58 @@ namespace Prueba.TCPCliente
                     ListaRecibida = datoServer;
                     cantidadTotal = datoServer.Length;
                 }
-               
-
 
             }
             //Para solicitar los bytes y reproducir
-            else if (mensaje.OpCod.Equals("04")){
+            else if (mensaje.OpCod.Equals("04"))
+            {
+               
                 Console.WriteLine("CancionRecibida");
                 Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
                 ListaRecibida = datoServer;
                 cantidadTotal = datoServer.Length;
 
+            }
+            else if (mensaje.OpCod.Equals("022"))
+            {
+                if (datorecibido.Equals("1"))
+                {
+                    Console.WriteLine("Usuario correcto");
+                    Form2 form2 = new Form2();
+                    form2.Close();
+                    cantidadTotal = 100;
+
+                }
+                else
+                {
+                    MessageBox.Show("No existe, bateador");
+
+                }
+            }
+            else if (mensaje.OpCod.Equals("9.1"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("9.2"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("9.3"))
+            {
+                Canciones[] datoServer = XMLtoObject<Canciones[]>(datorecibido);
+                ListaRecibida = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("10"))
+            {
+                Usuario[] datoServer = XMLtoObjectUser<Usuario[]>(datorecibido);
+                usuariosRecibido = datoServer;
+            }
+            else if (mensaje.OpCod.Equals("10.1"))
+            {
+                Usuario[] datoServer = XMLtoObjectUser<Usuario[]>(datorecibido);
+                usuariosRecibido = datoServer;
             }
             networkStream.Close();
 
@@ -155,7 +183,6 @@ namespace Prueba.TCPCliente
             AddDatoMensaje mensaje = new AddDatoMensaje();
             mensaje.OpCod = codigoOp;
             mensaje.cancion = cancion;
-          //  mensaje.cancion.PRUEBAA = "212";
             return mensaje;
         }
 
@@ -171,7 +198,7 @@ namespace Prueba.TCPCliente
 
             XmlWriterSettings settings = new XmlWriterSettings()
             {
-                Encoding = new UnicodeEncoding(false, false), // no BOM in a .NET string
+                Encoding = new UnicodeEncoding(false, false),
                 Indent = false,
                 OmitXmlDeclaration = false
             };
@@ -236,7 +263,7 @@ namespace Prueba.TCPCliente
                 XmlSerializer xs = new XmlSerializer(typeof(T), new XmlRootAttribute("Canciones"));
 
                 MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlCambio));
-                
+
                 return (T)xs.Deserialize(ms);
             }
             catch (Exception ex)
@@ -245,7 +272,23 @@ namespace Prueba.TCPCliente
                 throw;
             }
         }
-      
+        private T XMLtoObjectUser<T>(string xmlCambio)
+        {
+            try
+            {
+                XmlSerializer xs = new XmlSerializer(typeof(T), new XmlRootAttribute("Usuario"));
+
+                MemoryStream ms = new MemoryStream(Encoding.UTF8.GetBytes(xmlCambio));
+
+                return (T)xs.Deserialize(ms);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("----------------" + ex.GetBaseException());
+                throw;
+            }
+        }
+
 
 
 

@@ -28,10 +28,12 @@ namespace Prueba.TCPCliente
         [System.Xml.Serialization.XmlElement("ID")]
 
         public int ID { get; set; }
-        //public String PRUEBAA { get; set; }
 
         [System.Xml.Serialization.XmlElement("bytesSong")]
         public byte[] bytesSong { get; set; }
+
+        [System.Xml.Serialization.XmlElement("puntaje")]
+        public int puntaje { get; set; }
 
         public Canciones()
         {

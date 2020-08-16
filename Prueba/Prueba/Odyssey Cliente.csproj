@@ -11,6 +11,8 @@
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -72,6 +74,9 @@
     <Prefer32Bit>true</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Bass.Net, Version=2.4.12.3, Culture=neutral, PublicKeyToken=b7566c273e6ef480, processorArchitecture=MSIL">
+      <HintPath>..\packages\Bass.NetWrapper.2.4.12.5\lib\net45\Bass.Net.dll</HintPath>
+    </Reference>
     <Reference Include="NAudio, Version=1.8.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\NAudio.1.8.4\lib\net35\NAudio.dll</HintPath>
     </Reference>
@@ -81,8 +86,12 @@
     <Reference Include="policy.2.0.taglib-sharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib.2.1.0.0\lib\policy.2.0.taglib-sharp.dll</HintPath>
     </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
+    <Reference Include="System.Xaml" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -95,9 +104,28 @@
     <Reference Include="taglib-sharp, Version=2.1.0.0, Culture=neutral, PublicKeyToken=db62eba44689b5b0, processorArchitecture=MSIL">
       <HintPath>..\packages\taglib.2.1.0.0\lib\taglib-sharp.dll</HintPath>
     </Reference>
+    <Reference Include="UIAutomationProvider" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="addAmigos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="addAmigos.Designer.cs">
+      <DependentUpon>addAmigos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Analizador.cs" />
     <Compile Include="ConexionCliente\AddDatoMensaje.cs" />
+    <Compile Include="EcualizadorForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EcualizadorForm.Designer.cs">
+      <DependentUpon>EcualizadorForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EspectroControl.xaml.cs">
+      <DependentUpon>EspectroControl.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -116,12 +144,24 @@
     <Compile Include="Form3.Designer.cs">
       <DependentUpon>Form3.cs</DependentUpon>
     </Compile>
+    <Compile Include="FormEditar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormEditar.Designer.cs">
+      <DependentUpon>FormEditar.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConexionCliente\Canciones.cs" />
     <Compile Include="ConexionCliente\Mensajes.cs" />
     <Compile Include="ConexionCliente\SocketCliente.cs" />
     <Compile Include="User\Usuario.cs" />
+    <EmbeddedResource Include="addAmigos.resx">
+      <DependentUpon>addAmigos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EcualizadorForm.resx">
+      <DependentUpon>EcualizadorForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,6 +170,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Form3.resx">
       <DependentUpon>Form3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormEditar.resx">
+      <DependentUpon>FormEditar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -141,6 +184,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <None Include="Help\BassNet.chm" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -189,5 +233,20 @@
     <None Include="Resources\password1.png" />
     <Content Include="Resources\user.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Page Include="EspectroControl.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\BASS.Native.2.4.12.2\build\BASS.Native.targets" Condition="Exists('..\packages\BASS.Native.2.4.12.2\build\BASS.Native.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Este proyecto hace referencia a los paquetes NuGet que faltan en este equipo. Use la restauración de paquetes NuGet para descargarlos. Para obtener más información, consulte http://go.microsoft.com/fwlink/?LinkID=322105. El archivo que falta es {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\BASS.Native.2.4.12.2\build\BASS.Native.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BASS.Native.2.4.12.2\build\BASS.Native.targets'))" />
+    <Error Condition="!Exists('..\packages\BASS.ASIO.1.3.1.2\build\BASS.ASIO.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\BASS.ASIO.1.3.1.2\build\BASS.ASIO.targets'))" />
+  </Target>
+  <Import Project="..\packages\BASS.ASIO.1.3.1.2\build\BASS.ASIO.targets" Condition="Exists('..\packages\BASS.ASIO.1.3.1.2\build\BASS.ASIO.targets')" />
 </Project>
